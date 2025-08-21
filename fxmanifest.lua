@@ -20,7 +20,7 @@ server_scripts {
 }
 
 files {
-    'data/containers.lua'
+    'data/containers.lua',
     'stream/*.ydr',
     'stream/*.ytyp'
 }
