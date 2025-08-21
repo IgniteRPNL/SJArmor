@@ -63,52 +63,39 @@ local function calculatePlateWeight(stashInventory, baseWeight)
     local totalWeight = baseWeight or 0
     
     if not stashInventory or not stashInventory.items then
-        print(string.format("[SJArmor] Weight Debug: No stash inventory or items, returning base weight %d", totalWeight))
         return totalWeight
     end
     
-    print(string.format("[SJArmor] Weight Debug: Base weight %d, checking %d items", totalWeight, #stashInventory.items))
     
     for slot, item in pairs(stashInventory.items) do
         if item and Config.Plates[item.name] then
             local plateConfig = Config.Plates[item.name]
             local plateWeight = plateConfig.weight * item.count
             totalWeight = totalWeight + plateWeight
-            print(string.format("[SJArmor] Weight Debug: Added plate %s (count:%d, weight:%d each) = +%d, total now %d", 
-                item.name, item.count, plateConfig.weight, plateWeight, totalWeight))
         else
             if item then
-                print(string.format("[SJArmor] Weight Debug: Item %s is not a plate (no config found)", item.name))
             end
         end
     end
     
-    print(string.format("[SJArmor] Weight Debug: Final calculated weight: %d", totalWeight))
     return totalWeight
 end
 
 local function updatePlateCarrierWeight(playerId, carrierSlot, stashId)
-    print(string.format("[SJArmor] Weight Update: Starting for player %d, slot %d, stash %s", playerId, carrierSlot, stashId))
     
     local carrierItem = exports.ox_inventory:GetSlot(playerId, carrierSlot)
     if not carrierItem then 
-        print(string.format("[SJArmor] Weight Update: No carrier item found in slot %d", carrierSlot))
         return 
     end
     
     local carrierConfig = ContainerConfigs[carrierItem.name]
     if not carrierConfig then 
-        print(string.format("[SJArmor] Weight Update: No config for carrier %s", carrierItem.name))
         return 
     end
     
-    print(string.format("[SJArmor] Weight Update: Carrier %s has base weight %d", carrierItem.name, carrierConfig.baseWeight or 0))
     
     local stashInv = exports.ox_inventory:GetInventory(stashId, false)
     local newWeight = calculatePlateWeight(stashInv, carrierConfig.baseWeight)
-    
-    print(string.format("[SJArmor] Weight Update: Current carrier weight %d, calculated new weight %d", 
-        carrierItem.metadata and carrierItem.metadata.weight or 0, newWeight))
     
     local updatedMetadata = {}
     
@@ -125,7 +112,6 @@ local function updatePlateCarrierWeight(playerId, carrierSlot, stashId)
     SetTimeout(100, function()
         local verifyItem = exports.ox_inventory:GetSlot(playerId, carrierSlot)
         if verifyItem and verifyItem.metadata then
-            print(string.format("[SJArmor] Weight Update: Verification - final weight is %d", verifyItem.metadata.weight or 0))
         end
     end)
 end
