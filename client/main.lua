@@ -210,8 +210,9 @@ RegisterNetEvent('SJArmor:equipArmorResponse', function(success, armorData, mess
         currentArmorData = armorData
         isServerUpdatingArmor = true
 
+        local safeTargetArmor = math.max(0, math.min(100, math.floor(tonumber(targetArmor) or 0)))
         SetPlayerMaxArmour(cache.serverId, 100)
-        SetPedArmour(cache.ped, targetArmor or 0)
+        SetPedArmour(cache.ped, safeTargetArmor)
 
         local ped = cache.ped or PlayerPedId()
         if DoesEntityExist(ped) then
@@ -262,8 +263,9 @@ RegisterNetEvent('SJArmor:unequipArmorResponse', function(success, message, targ
         currentArmorData = {}
         stopArmorMonitoring()
 
+        local safeTargetArmor = math.max(0, math.min(100, math.floor(tonumber(targetArmor) or 0)))
         SetPlayerMaxArmour(cache.serverId, 100)
-        SetPedArmour(cache.ped, targetArmor or 0)
+        SetPedArmour(cache.ped, safeTargetArmor)
 
         local ped = cache.ped or PlayerPedId()
         if DoesEntityExist(ped) then
@@ -299,8 +301,9 @@ RegisterNetEvent('SJArmor:updateArmor', function(armorData, targetArmor)
     isServerUpdatingArmor = true
     currentArmorData = armorData
 
+    local safeTargetArmor = math.max(0, math.min(100, math.floor(tonumber(targetArmor) or 0)))
     SetPlayerMaxArmour(cache.serverId, 100)
-    SetPedArmour(cache.ped, targetArmor or 0)
+    SetPedArmour(cache.ped, safeTargetArmor)
 
     SetTimeout(1000, function() isServerUpdatingArmor = false end)
 
