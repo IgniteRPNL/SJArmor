@@ -11,7 +11,9 @@ Add the following items to your ox_inventory `data/items.lua` file:
     weight = 4536, -- Match to config.lua
     stack = false,
     close = true,
+    consume = 0,
     description = 'Heavy steel armor plate. Provides maximum durability but significant weight.',
+    server = { export = 'SJArmor.useArmorPlate' },
 },
 
 ['uhmwpe_plate'] = {
@@ -19,7 +21,9 @@ Add the following items to your ox_inventory `data/items.lua` file:
     weight = 1814, -- Match to config.lua
     stack = false,
     close = true,
+    consume = 0,
     description = 'Ultra-high molecular weight polyethylene plate. Lightweight with excellent protection.',
+    server = { export = 'SJArmor.useArmorPlate' },
 },
 
 ['ceramic_plate'] = {
@@ -27,7 +31,9 @@ Add the following items to your ox_inventory `data/items.lua` file:
     weight = 3175, -- Match to config.lua
     stack = false,
     close = true,
+    consume = 0,
     description = 'Ceramic composite armor plate. Good protection with moderate weight.',
+    server = { export = 'SJArmor.useArmorPlate' },
 },
 
 ['kevlar_plate'] = {
@@ -35,7 +41,9 @@ Add the following items to your ox_inventory `data/items.lua` file:
     weight = 1361, -- Match to config.lua
     stack = false,
     close = true,
+    consume = 0,
     description = 'Lightweight kevlar armor plate. Minimal weight but limited durability.',
+    server = { export = 'SJArmor.useArmorPlate' },
 },
 
 ----------------------------------------

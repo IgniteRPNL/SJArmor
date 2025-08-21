@@ -3,7 +3,7 @@ game 'gta5'
 
 name 'SJArmor'
 author 'subj3ct'
-version '1.0.0'
+version '2.0.0'
 description 'Advanced armor plate system for ox_inventory'
 
 shared_scripts {
@@ -21,6 +21,8 @@ server_scripts {
 
 files {
     'data/containers.lua'
+    'stream/*.ydr',
+    'stream/*.ytyp'
 }
 
 dependencies {
@@ -30,3 +32,5 @@ dependencies {
 
 lua54 'yes'
 use_experimental_fxv2_oal 'yes' 
+
+data_file 'DLC_ITYP_REQUEST' 'stream/subj3ct_armorplate_arch.ytyp'

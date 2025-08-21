@@ -69,3 +69,30 @@ Config.DamageSettings = {
     -- Minimum damage threshold to trigger plate damage
     minimumDamageThreshold = 5
 } 
+
+Config.PlateInstall = {
+    enabled = true,
+    label = 'Installing plate...',
+    duration = 6000,
+    canCancel = true,
+    closeInventory = true,
+    disable = { move = false, combat = true, mouse = false },
+    anim = { dict = 'clothingtie', clip = 'try_tie_negative_d' },
+
+    -- DEFAULT prop setup (used for every plate unless overridden below)
+    prop = {
+        enabled = true,
+        model = 'subj3ct_armorplate',      -- swap later to your plate prop if you get one
+        bone  = 57005,                 -- your bone id
+        pos   = { x = 0.15304574388404, y = -0.025746823922242, z = -0.0071596079540768 },
+        rot   = { x = 45.0, y = 90.0, z = -180.0 },
+    },
+
+    perPlate = {
+        -- inherits the default prop unless you override it here
+        steel_plate   = { duration = 9000 },
+        ceramic_plate = { duration = 7500 },
+        uhmwpe_plate  = { duration = 6000 },
+        kevlar_plate  = { duration = 5000 },
+    }
+}
