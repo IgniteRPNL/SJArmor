@@ -1555,6 +1555,7 @@ local function getInstallParamsForPlate(plateName)
 end
 
 exports('useArmorPlate', function(event, item, inventory, slot, data)
+    if event ~= 'use' then return true end
     local src = inventory.id
     if plateInstallBusy[src] then
         lib.notify(src, { type = 'inform', description = 'You are already installing a plate.' })
